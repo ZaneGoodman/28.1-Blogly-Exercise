@@ -18,4 +18,4 @@ class User(db.Model):
 
     last_name = db.Column(db.String(50), nullable=False, unique=True)
 
-    img_url = db.Column(db.String(250), unique=True)
+    img_url = db.Column(db.String(1000), unique=False)
