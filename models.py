@@ -16,6 +16,10 @@ class User(db.Model):
 
     first_name = db.Column(db.String(50), nullable=False, unique=True)
 
-    last_name = db.Column(db.String(50), nullable=False, unique=True)
+    last_name = db.Column(db.String(50), nullable=False)
 
-    img_url = db.Column(db.String(1000), unique=False)
+    img_url = db.Column(
+        db.String(1000),
+        nullable=False,
+        server_default="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232",
+    )
