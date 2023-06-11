@@ -23,12 +23,14 @@ connect_db(app)
 
 @app.route("/")
 def user_list():
+    """List users"""
     users = User.query.all()
     return render_template("list.html", users=users)
 
 
 @app.route("/", methods=["POST"])
 def add_user():
+    """Retrieve New user from form data & add to db"""
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     img_url = request.form["img_url"]
@@ -43,12 +45,14 @@ def add_user():
 
 @app.route("/user-details/<int:user_id>")
 def user_details(user_id):
+    """shows user details"""
     user = User.query.get(user_id)
     return render_template("details.html", user=user)
 
 
 @app.route("/user-details/<int:user_id>/edit")
 def edit_user(user_id):
+    """directed to user edit form"""
     user = User.query.get(user_id)
 
     return render_template("edit_user.html", user=user)
@@ -56,6 +60,7 @@ def edit_user(user_id):
 
 @app.route("/user-details/<int:user_id>/edit", methods=["POST"])
 def apply_edits_to_user(user_id):
+    """Apply changes to user details from edit user form"""
     user = User.query.get(user_id)
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
@@ -72,6 +77,7 @@ def apply_edits_to_user(user_id):
 
 @app.route("/user-details/<int:user_id>/delete")
 def delete_user(user_id):
+    """Delete user"""
     user = User.query.get(user_id)
 
     db.session.delete(user)
